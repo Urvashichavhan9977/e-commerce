@@ -23,10 +23,21 @@ const app = express();
 
 // ─── Security & Core Middleware ────────────────────────────────
 app.use(helmet());
+const allowedOrigins = [
+  'http://localhost:5173',
+  process.env.CLIENT_URL,
+  'https://endearing-queijadas-0448a0.netlify.app',
+].filter(Boolean).map((url) => url.replace(/\/$/, '')); // trailing slash hata do
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || 'https://endearing-queijadas-0448a0.netlify.app',
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS: ' + origin));
+      }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   })
