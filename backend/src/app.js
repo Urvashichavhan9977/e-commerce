@@ -24,11 +24,13 @@ const app = express();
 // ─── Security & Core Middleware ────────────────────────────────
 app.use(helmet());
 const allowedOrigins = [
-  'https://endearing-queijadas-0448a0.netlify.app',
-  process.env.CLIENT_URL,
-  'https://e-commerce-u71n.onrender.com',
-].filter(Boolean).map((url) => url.replace(/\/$/, '')); // trailing slash hata do
+     'https://endearing-queijadas-0448a0.netlify.app',
+     process.env.CLIENT_URL,
+     'https://e-commerce-u71n.onrender.com',
+     ...(process.env.NODE_ENV !== 'production' ? ['http://localhost:5173'] : []),
+   ].filter(Boolean).map((url) => url.replace(/\/$/, ''));
 
+   
 app.use(
   cors({
     origin: function (origin, callback) {
