@@ -62,6 +62,14 @@ app.get('/api/v1/health', (req, res) => {
   });
 });
 
+// app.js mein, health check ke just niche add karo
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Amrita Ayurveda API — visit /api/v1/health for status',
+  });
+});
+
 // ─── Routes ─────────────────────────────────────────────────────
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/admin/auth', adminAuthRoutes);
