@@ -1,0 +1,139 @@
+.footer {
+  background: #0c1e13;
+  color: rgba(255,255,255,.7);
+  padding: 4rem 0 0;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+@media (max-width: 900px) {
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .foot-grid { grid-template-columns: 1fr; }
+}
+
+.foot-logo {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: .75rem;
+}
+
+.foot-logo span { color: var(--gold2); }
+
+.foot-brand p {
+  font-size: .83rem;
+  line-height: 1.65;
+  max-width: 260px;
+  margin-bottom: 1.25rem;
+}
+
+.socials {
+  display: flex;
+  gap: .5rem;
+}
+
+.soc-link {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.65);
+  transition: all .2s;
+  text-decoration: none;
+}
+
+.soc-link:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+.footer h4 {
+  color: #fff;
+  font-size: .9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer ul {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  list-style: none;
+}
+
+.footer ul li a {
+  color: rgba(255,255,255,.55);
+  font-size: .83rem;
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.footer ul li a:hover {
+  color: var(--gold2);
+}
+
+.foot-pay {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.foot-pay > span {
+  font-size: .78rem;
+  color: rgba(255,255,255,.4);
+}
+
+.pay-icons {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+.pay-badge {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.65);
+  font-size: .68rem;
+  font-weight: 700;
+  padding: .3em .8em;
+  border-radius: 6px;
+}
+
+.foot-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0;
+  font-size: .78rem;
+  color: rgba(255,255,255,.35);
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.foot-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.foot-links a {
+  color: rgba(255,255,255,.35);
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.foot-links a:hover {
+  color: var(--gold2);
+}

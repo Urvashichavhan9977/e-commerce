@@ -1,0 +1,116 @@
+/* ===== Ingredients Hero ===== */
+.ingredients-hero {
+  background: linear-gradient(135deg, #0d2118 0%, #1a3a28 60%, #112a1c 100%);
+  padding: 4rem 0 3rem;
+  text-align: center;
+  color: #fff;
+}
+.ingredients-hero .eyebrow { color: var(--gold2); }
+.ingredients-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  color: #fff;
+  font-weight: 800;
+  margin: .5rem 0 .75rem;
+}
+.ingredients-hero h1 em { color: var(--gold2); font-style: normal; }
+.ingredients-hero p {
+  color: rgba(255, 255, 255, .72);
+  max-width: 560px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+/* ===== Ingredients Grid ===== */
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  align-items: stretch; /* ensures every card in a row matches the tallest one */
+}
+
+@media (max-width: 992px) {
+  .ingredients-grid { grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+}
+@media (max-width: 768px) {
+  .ingredients-grid { grid-template-columns: repeat(2, 1fr); gap: .9rem; }
+}
+@media (max-width: 480px) {
+  .ingredients-grid { grid-template-columns: 1fr; gap: .75rem; }
+}
+
+/* ===== Ingredient Card ===== */
+.ingredient-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;                 /* fill the stretched grid cell */
+  text-decoration: none;
+  color: inherit;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .3s, box-shadow .3s;
+}
+.ingredient-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.ingredient-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--light);
+  flex-shrink: 0;                /* image never shrinks/grows */
+}
+.ingredient-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .4s;
+}
+.ingredient-card:hover .ingredient-card-img img {
+  transform: scale(1.07);
+}
+
+.ingredient-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                       /* body fills remaining card height */
+  padding: 1.1rem;
+}
+
+.ingredient-card-body h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: .35rem;
+}
+
+.ingredient-card-body .benefits {
+  font-size: .8rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: .5rem;
+}
+
+.ingredient-card-body p {
+  font-size: .83rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: .8rem;
+  flex: 1;                       /* description grows/shrinks, pushing button down */
+
+  /* keep description length visually consistent across cards */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ingredient-card-body .btn {
+  margin-top: auto;              /* button always sticks to the bottom */
+  align-self: flex-start;
+  width: 100%;
+  text-align: center;
+}

@@ -1,0 +1,72 @@
+const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+
+const authRoutes = require('./routes/authRoutes');
+const adminAuthRoutes = require('./routes/adminAuthRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
+const productRoutes = require('./routes/productRoutes');
+const reviewRoutes = require('./routes/reviewRoutes');
+const couponRoutes = require('./routes/couponRoutes');
+const inventoryRoutes = require('./routes/inventoryRoutes');
+const orderRoutes = require('./routes/orderRoutes');
+const userRoutes = require('./routes/userRoutes');
+const comboRoutes = require('./routes/comboRoutes');
+const heroSlideRoutes = require('./routes/heroSlideRoutes');
+const concernRoutes = require('./routes/concernRoutes');
+const notFound = require('./middleware/notFound');
+const errorHandler = require('./middleware/errorHandler');
+
+const app = express();
+
+// ─── Security & Core Middleware ────────────────────────────────
+app.use(helmet());
+
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL || 'https://endearing-queijadas-0448a0.netlify.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  })
+);
+
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+} else {
+  app.use(morgan('combined'));
+}
+
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(cookieParser());
+
+// ─── Health Check ───────────────────────────────────────────────
+app.get('/api/v1/health', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Amrita Ayurveda API is running',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ─── Routes ─────────────────────────────────────────────────────
+app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/admin/auth', adminAuthRoutes);
+app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/reviews', reviewRoutes);
+app.use('/api/v1/coupons', couponRoutes);
+app.use('/api/v1/inventory', inventoryRoutes);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/combos', comboRoutes);
+app.use('/api/v1/hero-slides', heroSlideRoutes);
+app.use('/api/v1/concerns', concernRoutes);
+
+// ─── 404 + Error Handling ───────────────────────────────────────
+app.use(notFound);
+app.use(errorHandler);
+
+module.exports = app;
