@@ -26,7 +26,7 @@ app.use(helmet());
 const allowedOrigins = [
   'https://endearing-queijadas-0448a0.netlify.app',
   process.env.CLIENT_URL,
-  'https://endearing-queijadas-0448a0.netlify.app',
+  'https://e-commerce-u71n.onrender.com',
 ].filter(Boolean).map((url) => url.replace(/\/$/, '')); // trailing slash hata do
 
 app.use(
