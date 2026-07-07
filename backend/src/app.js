@@ -24,7 +24,7 @@ const app = express();
 // ─── Security & Core Middleware ────────────────────────────────
 app.use(helmet());
 const allowedOrigins = [
-  'http://localhost:5173',
+  'https://endearing-queijadas-0448a0.netlify.app',
   process.env.CLIENT_URL,
   'https://endearing-queijadas-0448a0.netlify.app',
 ].filter(Boolean).map((url) => url.replace(/\/$/, '')); // trailing slash hata do
